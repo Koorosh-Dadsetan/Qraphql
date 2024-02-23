@@ -6,6 +6,7 @@ using OneApiForAllEntity.DTO;
 using OneApiForAllEntity.Queries;
 using OneApiForAllEntity.Services.Employee;
 using Microsoft.EntityFrameworkCore.Internal;
+using OneApiForAllEntity.Controllers;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -26,6 +27,8 @@ builder.Services.AddScoped<ISchema, EmployeeDetailsSchema>();
 builder.Services.AddGraphQL(b => b
     .AddAutoSchema<EmployeeQuery>()  // schema
     .AddSystemTextJson());   // serializer
+
+builder.Services.AddScoped<MyAbstractClass, ImplementClass>();
 
 var app = builder.Build();
 
