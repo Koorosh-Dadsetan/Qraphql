@@ -23,14 +23,8 @@ namespace OneApiForAllEntity.Controllers
 
     public class ImplementClass : MyAbstractClass
     {
-        public override string AbstractMethod()
-        {
-            return "This is override AbstractMethod";
-        }
+        public override string AbstractMethod() => "This is override AbstractMethod";
 
-        public override string VirtualMethod()
-        {
-            return base.VirtualMethod();
-        }
+        public override string VirtualMethod() => base.VirtualMethod();
     }
 }
