@@ -1,12 +1,11 @@
-using GraphQL.Types;
 using GraphQL;
+using GraphQL.Types;
 using Microsoft.EntityFrameworkCore;
+using OneApiForAllEntity.Controllers;
 using OneApiForAllEntity.Data.Context;
 using OneApiForAllEntity.DTO;
 using OneApiForAllEntity.Queries;
 using OneApiForAllEntity.Services.Employee;
-using Microsoft.EntityFrameworkCore.Internal;
-using OneApiForAllEntity.Controllers;
 
 var builder = WebApplication.CreateBuilder(args);
 
