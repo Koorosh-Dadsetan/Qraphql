@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using OneApiForAllEntity.Controllers;
 using OneApiForAllEntity.Data.Context;
 using OneApiForAllEntity.DTO;
+using OneApiForAllEntity.Extensions;
 using OneApiForAllEntity.Queries;
 using OneApiForAllEntity.Services.Employee;
 
@@ -19,6 +20,8 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<TestDbContext>(option =>
 option.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+builder.Services.AddScoped<DbConnectionService>();
+
 builder.Services.AddScoped<IEmployeeService, EmployeeService>();
 builder.Services.AddScoped<EmployeeDetailsType>();
 builder.Services.AddScoped<EmployeeQuery>();
@@ -30,6 +33,8 @@ builder.Services.AddGraphQL(b => b
 builder.Services.AddScoped<MyAbstractClass, ImplementClass>();
 
 var app = builder.Build();
+
+app.UseMiddleware<Middleware>();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
