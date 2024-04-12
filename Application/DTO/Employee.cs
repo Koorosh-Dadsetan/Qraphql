@@ -20,4 +20,17 @@ namespace Application.DTO
             Field(x => x.Mobile);
         }
     }
+
+    ////////////////////////////////////////////////////////
+
+    //public record EmployeeResponse(int Id, string FullName, string Mobile);
+
+    public class EmployeeResponse
+    {
+        public int Id { get; set; }
+
+        public string FullName { get; set; } = null!;
+
+        public string? Mobile { get; set; }
+    }
 }

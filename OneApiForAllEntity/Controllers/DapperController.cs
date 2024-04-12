@@ -10,8 +10,9 @@ namespace OneApiForAllEntity.Controllers
     [ApiController]
     public class DapperController : ControllerBase
     {
-        private readonly IDbConnection _db;
-        public DapperController(ConfigureServices db) => _db = db.GetConnection();
+        private IDbConnection? _db;
+        private readonly IConfiguration _configuration;
+        public DapperController(IConfiguration Configuration) => _configuration = Configuration;
 
         [HttpGet]
         public IActionResult GetAllEmployees()
@@ -22,6 +23,8 @@ namespace OneApiForAllEntity.Controllers
             //    return Ok(db.Query<Employee>(query).ToList());
             //}
 
+            _db = ConfigureServices.GetConnection(_configuration);
+
             string query = "SELECT * FROM Employees";
             return Ok(_db.Query<Employee>(query).ToList());
         }
@@ -31,6 +34,8 @@ namespace OneApiForAllEntity.Controllers
         {
             try
             {
+                _db = ConfigureServices.GetConnection(_configuration);
+
                 string query = "INSERT INTO Employees (FullName, Mobile, Age, Address) VALUES (@FullName, @Mobile, @Age, @Address)";
                 _db.Execute(query, employee);
                 return Ok($"{employee.FullName} با موفقیت اضافه شد");

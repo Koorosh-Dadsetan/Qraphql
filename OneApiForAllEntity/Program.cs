@@ -1,12 +1,6 @@
-using Application.DTO;
 using Application.Extension;
-using Application.Queries;
-using Application.Repository.Employee;
-using Domain.Context;
 using GraphQL;
 using GraphQL.Types;
-using Microsoft.EntityFrameworkCore;
-using OneApiForAllEntity.Controllers;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,20 +11,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddDbContext<TestDbContext>(option =>
-option.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
-
-builder.Services.AddScoped<ConfigureServices>();
-
-builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
-builder.Services.AddScoped<EmployeeDetailsType>();
-builder.Services.AddScoped<EmployeeQuery>();
-builder.Services.AddScoped<ISchema, EmployeeDetailsSchema>();
-builder.Services.AddGraphQL(b => b
-    .AddAutoSchema<EmployeeQuery>()  // schema
-    .AddSystemTextJson());   // serializer
-
-builder.Services.AddScoped<MyAbstractClass, ImplementClass>();
+builder.Services.AddServices(builder.Configuration);
 
 var app = builder.Build();
 

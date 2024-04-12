@@ -4,7 +4,9 @@ namespace Application.Repository.Employee
 {
     public interface IEmployeeRepository
     {
-        public List<EmployeeDetails> GetEmployees();
-        public List<EmployeeDetails> GetEmployee(int empId);
+        List<EmployeeDetails> GetEmployees();
+        List<EmployeeDetails> GetEmployee(int empId);
+
+        List<EmployeeResponse> GetAll();
     }
 }
