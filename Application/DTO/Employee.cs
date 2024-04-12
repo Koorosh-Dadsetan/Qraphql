@@ -1,6 +1,6 @@
 ﻿using GraphQL.Types;
 
-namespace OneApiForAllEntity.DTO
+namespace Application.DTO
 {
     public class EmployeeDetails
     {

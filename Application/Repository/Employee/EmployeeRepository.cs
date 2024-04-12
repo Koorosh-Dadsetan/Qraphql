@@ -1,15 +1,12 @@
-﻿using OneApiForAllEntity.Data.Context;
-using OneApiForAllEntity.DTO;
+﻿using Application.DTO;
+using Domain.Context;
 
-namespace OneApiForAllEntity.Services.Employee
+namespace Application.Repository.Employee
 {
-    public class EmployeeService : IEmployeeService
+    public class EmployeeRepository : IEmployeeRepository
     {
         private readonly TestDbContext _context;
-        public EmployeeService(TestDbContext context)
-        {
-            _context = context;
-        }
+        public EmployeeRepository(TestDbContext context) => _context = context;
 
         public List<EmployeeDetails> GetEmployees()
         {

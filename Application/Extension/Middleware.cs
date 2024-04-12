@@ -1,4 +1,6 @@
-﻿namespace OneApiForAllEntity.Extensions
+﻿using Microsoft.AspNetCore.Http;
+
+namespace Application.Extension
 {
     public class Middleware
     {

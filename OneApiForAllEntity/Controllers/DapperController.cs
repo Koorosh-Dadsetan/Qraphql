@@ -1,7 +1,7 @@
-﻿using Dapper;
+﻿using Application.Extension;
+using Dapper;
+using Domain.Models;
 using Microsoft.AspNetCore.Mvc;
-using OneApiForAllEntity.Data.Models;
-using OneApiForAllEntity.Extensions;
 using System.Data;
 
 namespace OneApiForAllEntity.Controllers
@@ -11,7 +11,7 @@ namespace OneApiForAllEntity.Controllers
     public class DapperController : ControllerBase
     {
         private readonly IDbConnection _db;
-        public DapperController(DbConnectionService db) => _db = db.GetConnection();
+        public DapperController(ConfigureServices db) => _db = db.GetConnection();
 
         [HttpGet]
         public IActionResult GetAllEmployees()

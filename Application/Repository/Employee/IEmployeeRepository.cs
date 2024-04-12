@@ -1,8 +1,8 @@
-﻿using OneApiForAllEntity.DTO;
+﻿using Application.DTO;
 
-namespace OneApiForAllEntity.Services.Employee
+namespace Application.Repository.Employee
 {
-    public interface IEmployeeService
+    public interface IEmployeeRepository
     {
         public List<EmployeeDetails> GetEmployees();
         public List<EmployeeDetails> GetEmployee(int empId);

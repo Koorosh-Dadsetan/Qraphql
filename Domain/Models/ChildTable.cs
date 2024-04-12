@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace OneApiForAllEntity.Data.Models;
+namespace Domain.Models;
 
 public partial class ChildTable
 {

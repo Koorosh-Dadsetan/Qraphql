@@ -1,13 +1,14 @@
-﻿using GraphQL;
+﻿using Application.DTO;
+using Application.Repository.Employee;
+using GraphQL;
 using GraphQL.Types;
-using OneApiForAllEntity.DTO;
-using OneApiForAllEntity.Services.Employee;
+using Microsoft.Extensions.DependencyInjection;
 
-namespace OneApiForAllEntity.Queries
+namespace Application.Queries
 {
     public class EmployeeQuery : ObjectGraphType
     {
-        public EmployeeQuery(IEmployeeService employeeService)
+        public EmployeeQuery(IEmployeeRepository employeeService)
         {
             Field<ListGraphType<EmployeeDetailsType>>(Name = "Employees", resolve: x => employeeService.GetEmployees()); //graphql?query={employees{id,fullName,age,mobile}}
             Field<ListGraphType<EmployeeDetailsType>>(Name = "Employee",

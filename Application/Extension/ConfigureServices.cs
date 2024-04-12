@@ -1,12 +1,13 @@
 ﻿using Microsoft.Data.SqlClient;
+using Microsoft.Extensions.Configuration;
 using System.Data;
 
-namespace OneApiForAllEntity.Extensions
+namespace Application.Extension
 {
-    public class DbConnectionService
+    public class ConfigureServices
     {
         private readonly string _connectionString;
-        public DbConnectionService(IConfiguration configuration)
+        public ConfigureServices(IConfiguration configuration)
         {
             _connectionString = configuration.GetConnectionString("DefaultConnection");
         }
@@ -16,5 +17,4 @@ namespace OneApiForAllEntity.Extensions
             return new SqlConnection(_connectionString);
         }
     }
-
 }
