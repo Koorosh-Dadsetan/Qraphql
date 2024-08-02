@@ -5,7 +5,7 @@ on:
     branches:
       - master
     paths:
-      - '**/*.csproj'
+      - 'https://github.com/Koorosh-Dadsetan/Qraphql/blob/master/OneApiForAllEntity/OneApiForAllEntity.csproj'
     types: [created]
 
 jobs:
