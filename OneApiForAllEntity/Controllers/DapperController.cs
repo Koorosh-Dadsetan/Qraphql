@@ -29,6 +29,8 @@ namespace OneApiForAllEntity.Controllers
             return Ok(_db.Query<Employee>(query).ToList());
         }
 
+        //test
+
         [HttpPost]
         public IActionResult AddEmployee(Employee employee)
         {
