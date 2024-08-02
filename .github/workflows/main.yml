@@ -1,0 +1,49 @@
+name: Build and Deploy
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - '**/*.csproj'
+    types: [created]
+
+jobs:
+  build-and-deploy:
+    if: startsWith(github.event.head_commit.message, 'publish')
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: '7.x'
+
+    - name: Restore dependencies
+      run: dotnet restore
+
+    - name: Build the project
+      run: dotnet build --configuration Release --no-restore
+
+    - name: Publish the project
+      run: dotnet publish --configuration Release --output ./publish --no-restore
+
+    - name: Copy files to Remote Server
+      uses: appleboy/scp-action@v0.1.3
+      with:
+        host: 127.0.0.1
+        username: sa
+        password: 1111
+        source: ./publish/
+        target: E:/build/
+
+    - name: Restart IIS Service
+      uses: appleboy/ssh-action@master
+      with:
+        host: 127.0.0.1
+        username: sa
+        password: 1111
+        script: iisreset
